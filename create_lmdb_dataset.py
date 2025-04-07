@@ -35,16 +35,19 @@ def createDataset(inputPath, gtFile, outputPath, checkValid=True):
         checkValid : if true, check the validity of every image
     """
     os.makedirs(outputPath, exist_ok=True)
-    env = lmdb.open(outputPath, map_size=1099511627776)
+    env = lmdb.open(outputPath, map_size=1073741824)
     cache = {}
     cnt = 1
 
-    with open(gtFile, 'r', encoding='utf-8') as data:
+    with open(gtFile, 'r') as data:
         datalist = data.readlines()
 
     nSamples = len(datalist)
     for i in range(nSamples):
-        imagePath, label = datalist[i].strip('\n').split('\t')
+        print(datalist[i])
+        imagePath, label = datalist[i].strip('\n').split('.png')
+        print('Hello', label)
+        imagePath+='.png'
         imagePath = os.path.join(inputPath, imagePath)
 
         # # only use alphanumeric data
@@ -85,3 +88,4 @@ def createDataset(inputPath, gtFile, outputPath, checkValid=True):
 
 if __name__ == '__main__':
     fire.Fire(createDataset)
+    
