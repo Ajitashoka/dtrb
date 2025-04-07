@@ -46,7 +46,7 @@ def createDataset(inputPath, gtFile, outputPath, checkValid=True):
     for i in range(nSamples):
         print(datalist[i])
         imagePath, label = datalist[i].strip('\n').split('.png')
-        print('Hello', label)
+        #print('Hello', label)
         imagePath+='.png'
         imagePath = os.path.join(inputPath, imagePath)
 

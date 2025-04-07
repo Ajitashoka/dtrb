@@ -131,6 +131,7 @@ class LmdbDataset(Dataset):
     def __init__(self, root, opt):
 
         self.root = root
+        opt.character='ابتثجحخدذرزسشصضطظعغفقكلمنهوي...'
         self.opt = opt
         self.env = lmdb.open(root, max_readers=32, readonly=True, lock=False, readahead=False, meminit=False)
         if not self.env:

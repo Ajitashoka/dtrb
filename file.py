@@ -5,12 +5,10 @@ import arabic_reshaper
 from bidi.algorithm import get_display
 
 # Arabic words (you can expand this list or use a dictionary file)
-arabic_words = [
-    "مرحبا", "مدرسة", "سيارة", "كمبيوتر", "هاتف", "قلم", "شجرة", "سماء", "أهلاً", "عالم"
-]
+arabic_words = ["سلام", "قلم", "مدرسة", "أمل", "سماء", "شجرة", "طريق", "شمس", "ليل", "أبجد"]
 
 # Parameters
-output_dir = "/Users/ajit/deep-text-recognition-benchmark/t_data"
+output_dir = "/Users/ajit/deep-text-recognition-benchmark/data"
 image_dir = os.path.join(output_dir, "images")
 label_file = os.path.join(output_dir, "labels.txt")
 num_samples = 50
