@@ -44,16 +44,18 @@ def createDataset(inputPath, gtFile, outputPath, checkValid=True):
 
     nSamples = len(datalist)
     for i in range(nSamples):
-        print(datalist[i])
-        imagePath, label = datalist[i].strip('\n').split('.png')
+        #print(datalist[i])
+        imagePath, label = datalist[i].strip('\n').split('.jpg')
         #print('Hello', label)
-        imagePath+='.png'
+        imagePath+='.jpg'
         imagePath = os.path.join(inputPath, imagePath)
-
+        
+        #print(imagePath,label)
         # # only use alphanumeric data
         # if re.search('[^a-zA-Z0-9]', label):
         #     continue
 
+       # continue
         if not os.path.exists(imagePath):
             print('%s does not exist' % imagePath)
             continue

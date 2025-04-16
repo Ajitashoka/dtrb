@@ -1,46 +1,19 @@
 import os
-import random
-from PIL import Image, ImageDraw, ImageFont
-import arabic_reshaper
-from bidi.algorithm import get_display
+import glob
 
-# Arabic words (you can expand this list or use a dictionary file)
-arabic_words = ["سلام", "قلم", "مدرسة", "أمل", "سماء", "شجرة", "طريق", "شمس", "ليل", "أبجد"]
+# Set your image folder here
+image_dir = "/Users/ajit/deep-text-recognition-benchmark/out"
+output_file = os.path.join(image_dir, "label.txt")
 
-# Parameters
-output_dir = "/Users/ajit/deep-text-recognition-benchmark/data"
-image_dir = os.path.join(output_dir, "images")
-label_file = os.path.join(output_dir, "labels.txt")
-num_samples = 50
-img_size = (160, 48)
-font_path = "Amiri-Regular.ttf"  # Make sure this font supports Arabic
+with open(output_file, "w", encoding="utf-8") as f:
+    for img_path in glob.glob(os.path.join(image_dir, "*.jpg")):
+        img_name = os.path.basename(img_path)
+        if "_" in img_name:
+            label = "_".join(img_name.split("_")[:-1])  # Remove trailing _#.jpg
+        else:
+            label = os.path.splitext(img_name)[0]
 
-# Create directories
-os.makedirs(image_dir, exist_ok=True)
+        full_path = os.path.abspath(img_path)
+        f.write(f"{full_path} {label}\n")
 
-# Load font
-try:
-    font = ImageFont.truetype(font_path, 28)
-except IOError:
-    raise Exception("Arabic font not found. Make sure to download 'Amiri-Regular.ttf' or another Arabic font.")
-
-with open(label_file, "w", encoding="utf-8") as f:
-    for i in range(1, num_samples + 1):
-        text = random.choice(arabic_words)
-        reshaped_text = arabic_reshaper.reshape(text)
-        bidi_text = get_display(reshaped_text)
-
-        img = Image.new('L', img_size, color=255)
-        draw = ImageDraw.Draw(img)
-        b= draw.textbbox((0,0),bidi_text, font=font)
-        h=b[2]-b[0]
-        w=b[3]-b[1]
-        draw.text(((img_size[0] - w) / 2, (img_size[1] - h) / 2), bidi_text, font=font, fill=0)
-
-        filename = f"{i:06d}.png"
-        filepath = os.path.join(image_dir, filename)
-        img.save(filepath)
-
-        f.write(f"{filepath} {text}\n")
-
-print(f"Arabic synthetic dataset created at: {output_dir}")
+print(f"✅ Labels extracted and saved to: {output_file}")
