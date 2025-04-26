@@ -6,7 +6,8 @@
 ## 4.Download deep-text-recognition-benchmark
 ## 5.Install the dependencies in venv
 ## 6.Download the TPS-ResNet-BiLSTM-Attn.pth
-## 7.Command to train the model python train.py \
+## 7.Command to train the model
+  python train.py \
   --train_data out_lmdb \
   --valid_data out_lmdb \
   --select_data "/" \
@@ -25,7 +26,8 @@
   --FT \
   --character “ابتثجحخدذرزسشصضطظعغفقكلمنهويءأإآىئؤة"
 
-## 8.Command to check the output python demo.py \
+## 8.Command to check the output
+  python demo.py \
   --Transformation TPS \
   --FeatureExtraction ResNet \
   --SequenceModeling BiLSTM \
