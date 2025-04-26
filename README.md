@@ -1,8 +1,8 @@
 # Fine tuning EasyOCR Model
 ## 1.Download the TextRecognitionDataGenerator
 ## 2.Install the dependencies in a virtual enviornment.
-## 3.Use the following command to generate arabic dataset trdg -l ar -c 1000 -w 1
-##
+## 3.Use the following command to generate arabic dataset
+trdg -l ar -c 1000 -w 1
 ## 4.Download deep-text-recognition-benchmark
 ## 5.Install the dependencies in venv
 ## 6.Download the TPS-ResNet-BiLSTM-Attn.pth
